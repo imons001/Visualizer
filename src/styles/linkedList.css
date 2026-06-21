@@ -1,0 +1,135 @@
+.page-nav {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 1000px;
+}
+/* Cards */
+.reversal-card {
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+}
+/* Titles */
+.visualizer {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #887d86;
+  text-align: center;
+  margin: 0 0 8px;
+}
+.list-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.node {
+  width: 30px; height: 30px;
+  border-radius: 12px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+.node-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+.node-default {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid transparent;
+}
+.node-current {
+  background: #fdf5f8;
+  color: #666a;
+  border: 2px solid #b5547a;
+  box-shadow: 0 0 10px purple;
+}
+.node-prev {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid transparent;
+}
+.node-next {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid transparent;
+  box-shadow: 0 0 10px purple;
+}
+.node-reversed {
+  background: #9fa4cf;
+  color: #666;
+  border: 2px solid transparent;
+
+}
+.arrow { 
+    font-size: 1.1rem; 
+    padding: 0 2px; 
+    transition: all 0.3s; 
+}
+.arrow-right-default { 
+    color: #ccc;
+ }
+.arrow-right         { 
+    color: #b5547a; 
+}
+.arrow-left{ 
+    color: #9fa4cf; 
+}
+
+.arrow-highlight     { 
+    color: #7a0936; 
+    font-size: 1.3rem;
+}   
+.output-wrap {
+  background: #f4f0fa;
+  border: 2px solid #c9c4e8;
+  border-radius: 18px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  box-shadow: 0 0 18px rgba(159, 164, 207, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.output-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #9fa4cf;
+  margin: 0;
+}
+
+.output-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.node-output {
+  background: #9fa4cf;
+  color: white;
+  border: 2px solid #7b82be;
+  box-shadow: 0 0 8px rgba(159, 164, 207, 0.5);
+}
+
+.arrow-output {
+  color: #9fa4cf;
+}

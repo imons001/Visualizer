@@ -13,7 +13,7 @@ export const lessons = [
     desc: "Track subarrays efficiently",
     icon: "🪟",
     iconStyle: "pink",
-    status: "soon",
+    status: "ready",
   },
   {
     id: "binary-search",
@@ -21,6 +21,14 @@ export const lessons = [
     desc: "Divide and conquer sorted arrays",
     icon: "🔍",
     iconStyle: "green",
+    status: "ready",
+  },
+  {
+    id: "linked-list",
+    name: "Linked List",
+    desc: "Master the dynamic data structure",
+    icon: "🔗",
+    iconStyle: "purple",
     status: "ready",
   },
 ];

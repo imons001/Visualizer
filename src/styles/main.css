@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;800&family=DM+Mono:wght@500&display=swap');
+
+/* ── Page wrapper ── */
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  color: #777;
+  margin: 0;
+}
+
+/* ── Decorative dots ── */
+.deco {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+.deco span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #b5547a;
+  opacity: 0.4;
+}
+.deco span:nth-child(2) { opacity: 0.7; }
+.deco span:nth-child(3) { opacity: 1; }
+
+/* ── Progress bar ── */
+.progress-bar-wrap {
+  background: #f2e0e7;
+  border-radius: 99px;
+  height: 6px;
+  margin-bottom: 32px;
+}
+.progress-bar-fill {
+  background: #b5547a;
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* ── Array ── */
+.array-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.cell-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.cell {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+.cell-default { background: #f5f5f5; color: #666; }
+
+/* ── Explanation card ── */
+.explanation-card {
+  background: white;
+  border: 2px solid #f2e0e7;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.card-found { border-color: #b5547a; background: #faf0f4; }
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btn-next { background: #b5547a; color: white; }
+.btn-next:hover:not(:disabled) { background: #9c3d62; }
+.btn-prev { background: #f2e0e7; color: #b5547a; }
+.btn-reset { background: #f5f5f5; color: #666; }
+.btn-back { background: #f2e0e7; color: #b5547a; font-size: 0.85rem; padding: 8px 16px; border-radius: 12px; }
+.btn-back-wrap { display: flex; justify-content: center; margin-top: 20px; }
+
+/* ── Step info ── */
+.step-info { text-align: center; }
+.step-count { font-size: 0.8rem; color: #aaa; margin-bottom: 6px; }
+.step-details { display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; }
+.step-detail-item { font-size: 0.8rem; color: #666; }
+.dot-sep { color: #ddd; }
+
+/* ── Status pill (used by binary search) ── */
+.status-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
+.status-pill { padding: 8px 20px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; }
+.pill-move_left, .pill-move_right { background: #f2e0e7; color: #b5547a; }
+.pill-found { background: #b5547a; color: white; }
