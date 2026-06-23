@@ -4,55 +4,59 @@ export const nodes = [
   { id: 3, value: 30, next: null },
   { id: 4, value: 40, next: null },
   { id: 5, value: 50, next: null },
-]; 
-//link nodes together 
-for (let i = 0; i < nodes.length - 1; i++) {
-  nodes[i].next = nodes[i + 1];
-}
-// snapshot
+];
+
 export const STEPS = (() => {
   const steps = [];
-  const reversed = []; // to track the reversed portion of the list for visualization
+  const reversed = [];
+
+  for (let i = 0; i < nodes.length - 1; i++) {
+    nodes[i].next = nodes[i + 1];
+  }
   let prev = null;
   let current = nodes[0];
   let next = null;
 
-
   while (current) {
     next = current.next;
 
-    // look at current state
-    steps.push({ prev: prev?.value, 
-        curr: current.value, 
-        next: next?.value, 
-        action: "look",
-      reversed: [...reversed] });
-
-    // point backwards
-    current.next = prev;
-    steps.push({ prev: prev?.value, 
+    // look — save the escape route
+    steps.push({
+      prev: prev?.value,
       curr: current.value,
-       next: next?.value, 
-       action: "point",
-       reversed: [...reversed] });
+      next: next?.value,
+      reversed: [...reversed],
+      action: "look",
+    });
 
-    // slide pointers
+    // point — flip current.next = prev, forward link is now severed
+    current.next = prev;
+    steps.push({
+      prev: prev?.value,
+      curr: current.value,
+      next: next?.value,
+      reversed: [...reversed],
+      action: "point",
+    });
+
+    // slide — advance pointers, current node is now fully reversed
     prev = current;
     current = next;
-    //once we slide, current node is now part of the reversed list
     reversed.push(prev.value);
-    steps.push({ prev: prev?.value, 
-        curr: current?.value, 
-        next: current?.next?.value, 
-        action: "slide",
-        reversed: [...reversed] });
+    steps.push({
+      prev: prev?.value,
+      curr: current?.value,
+      next: current?.next?.value,
+      reversed: [...reversed],
+      action: "slide",
+    });
   }
   return steps;
 })();
 
 export function getExplanation(action) {
-  if (action === "look")  return "Look at next node";
-  if (action === "point") return "We reverse the link";
-  if (action === "slide") return "We move our pointers forward ";
+  if (action === "look")  return "Save your escape route — bookmark next = current.next before the link is broken.";
+  if (action === "point") return "Flip the pointer — current.next = prev. The forward connection is severed.";
+  if (action === "slide") return "Slide forward — prev = current, current = next. Repeat until done.";
   return "";
 }

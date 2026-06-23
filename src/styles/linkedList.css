@@ -2,134 +2,188 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 18px 0;
 }
 
 .card {
   width: 100%;
-  max-width: 1000px;
+  max-width: 730px;
 }
-/* Cards */
+
 .reversal-card {
   background: white;
   border-radius: 24px;
-  padding: 28px;
+  padding: 26px 30px 28px;
 }
-/* Titles */
+
 .visualizer {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   color: #887d86;
   text-align: center;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
 }
+
 .list-wrap {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  align-items: center;
+  gap: 6px;
+  margin-top: 28px;
   margin-bottom: 24px;
 }
+
 .node {
-  width: 30px; height: 30px;
-  border-radius: 12px;
-  display: flex; 
-  align-items: center; 
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
   border: 2px solid transparent;
 }
+
+.node-default {
+  background: #f5f5f5;
+  color: #555;
+}
+
+.node-current {
+  background: white;
+  color: #b5547a;
+  border: 2px solid #b5547a;
+  box-shadow: 0 0 12px rgba(181, 84, 122, 0.45);
+}
+
+.node-prev,
+.node-reversed {
+  background: #9fa4cf;
+  color: white;
+  border: 2px solid #7a80b8;
+}
+
+.node-next {
+  background: white;
+  color: #555;
+  border: 2px solid #d8b8e8;
+  box-shadow: 0 0 12px rgba(159, 92, 184, 0.35);
+}
+
 .node-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 6px;
-}
-.node-default {
-  background: #f5f5f5;
-  color: #666;
-  border: 2px solid transparent;
-}
-.node-current {
-  background: #fdf5f8;
-  color: #666a;
-  border: 2px solid #b5547a;
-  box-shadow: 0 0 10px purple;
-}
-.node-prev {
-  background: #f5f5f5;
-  color: #666;
-  border: 2px solid transparent;
-}
-.node-next {
-  background: #f5f5f5;
-  color: #666;
-  border: 2px solid transparent;
-  box-shadow: 0 0 10px purple;
-}
-.node-reversed {
-  background: #9fa4cf;
-  color: #666;
-  border: 2px solid transparent;
-
-}
-.arrow { 
-    font-size: 1.1rem; 
-    padding: 0 2px; 
-    transition: all 0.3s; 
-}
-.arrow-right-default { 
-    color: #ccc;
- }
-.arrow-right         { 
-    color: #b5547a; 
-}
-.arrow-left{ 
-    color: #9fa4cf; 
+  gap: 3px;
 }
 
-.arrow-highlight     { 
-    color: #7a0936; 
-    font-size: 1.3rem;
-}   
-.output-wrap {
-  background: #f4f0fa;
-  border: 2px solid #c9c4e8;
-  border-radius: 18px;
-  padding: 16px 20px;
-  margin-top: 16px;
-  box-shadow: 0 0 18px rgba(159, 164, 207, 0.35);
+.node-col,
+.null-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
+}
+
+.node-label {
+  height: 14px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: #8f8fca;
+}
+
+.node-label-null {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #aaa4c6;
+}
+
+.arrow {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  font-size: 1.35rem;
+  transition: all 0.3s ease;
+}
+
+.arrow-right-default {
+  color: #cfcfcf;
+}
+
+.arrow-right {
+  color: #b5547a;
+}
+
+.arrow-left {
+  color: #9fa4cf;
+}
+
+.arrow-highlight {
+  color: #7a0936;
+  font-size: 1.2rem;
+}
+
+.arrow-severed {
+  color: #e05a5a;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 0 4px;
+}
+
+.explanation-card {
+  background: transparent;
+  color: #999ab8;
+  border-radius: 0;
+  padding: 0;
+  margin: 8px 0 16px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  border: none;
+}
+
+.output-wrap {
+  background: #faf6fc;
+  border: 2px solid #d4c3ee;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-top: 6px;
+  margin-bottom: 0;
+  box-shadow: 0 4px 18px rgba(159, 164, 207, 0.18);
 }
 
 .output-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #aaa4dc;
+  letter-spacing: 1px;
+  margin: 0 0 12px;
+  text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.7px;
-  color: #9fa4cf;
-  margin: 0;
 }
 
 .output-row {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .node-output {
   background: #9fa4cf;
   color: white;
-  border: 2px solid #7b82be;
-  box-shadow: 0 0 8px rgba(159, 164, 207, 0.5);
+  border: 2px solid #7a80b8;
+  box-shadow: 0 4px 12px rgba(122, 128, 184, 0.35);
 }
 
 .arrow-output {
   color: #9fa4cf;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
