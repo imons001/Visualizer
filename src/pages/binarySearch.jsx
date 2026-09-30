@@ -1,28 +1,39 @@
-import { useState } from "react";
-import { initialArray, target, STEPS } from "../data/binarySearch";
+import { useState, useMemo } from "react";
+import { initialArray, target, buildSteps, randomArray, randomTarget } from "../data/binarySearch";
 import "../styles/binary.css";
 
 export default function BinarySearchPage({ onBack }) {
+  const [arr, setArr] = useState(initialArray);
+  const [tgt, setTgt] = useState(target);
   const [step, setStep] = useState(0);
-  const current = STEPS[step];
+  const steps = useMemo(() => buildSteps(arr, tgt), [arr, tgt]);
+  const current = steps[step];
+
+  const handleRandom = () => {
+    const next = randomArray();
+    setArr(next);
+    setTgt(randomTarget(next));
+    setStep(0);
+  };
+
   const reset = () => setStep(0);
-  const goNext = () => setStep((s) => Math.min(STEPS.length - 1, s + 1));
+  const goNext = () => setStep((s) => Math.min(steps.length - 1, s + 1));
   const goPrev = () => setStep((s) => Math.max(0, s - 1));
-  const progressPct = ((step + 1) / STEPS.length) * 100;
+  const progressPct = ((step + 1) / steps.length) * 100;
 
   const explanation =
     current.action === "found"
       ? "Found the target at the middle index!"
       : current.action === "move_left"
-      ? "The middle value is less than the target, so we can move the left pointer up to mid + 1."
-      : "The middle value is greater than the target, so we can move the right pointer down to mid - 1.";
+        ? "The middle value is less than the target, so we can move the left pointer up to mid + 1."
+        : "The middle value is greater than the target, so we can move the right pointer down to mid - 1.";
 
   const statusMsg =
     current.action === "found"
-      ? `Found! ${initialArray[current.mid]} = ${target}`
+      ? `Found! ${arr[current.mid]} = ${tgt}`
       : current.action === "move_left"
-      ? `Middle value ${initialArray[current.mid]} < ${target} — move left pointer up →`
-      : `Middle value ${initialArray[current.mid]} > ${target} — move right pointer down ←`;
+        ? `Middle value ${arr[current.mid]} < ${tgt} — move left pointer up →`
+        : `Middle value ${arr[current.mid]} > ${tgt} — move right pointer down ←`;
 
   return (
     <div className="app">
@@ -32,7 +43,7 @@ export default function BinarySearchPage({ onBack }) {
           <span /><span /><span />
         </div>
         <p className="subtitle">
-          Find the index of <strong>{target}</strong>
+          Find the index of <strong>{tgt}</strong>
         </p>
       </div>
 
@@ -41,7 +52,7 @@ export default function BinarySearchPage({ onBack }) {
       </div>
 
       <div className="array-wrap">
-        {initialArray.map((val, i) => {
+        {arr.map((val, i) => {
           const isMid = i === current.mid;
           const isLeft = i === current.left;
           const isRight = i === current.right;
@@ -56,8 +67,11 @@ export default function BinarySearchPage({ onBack }) {
           return (
             <div className="cell-wrap" key={i}>
               <div className={cellClass}>{val}</div>
-              <div className={`pointer-label ${isMid ? "label-left" : isRight ? "label-right" : "label-none"}`}>
-                {isMid ? "🔺 M" : isRight ? "🔻 R" : isLeft ? "🔺 L" : "·"}
+              <div className="pointer-label">
+                {isLeft && <span className="label-l">🔺L</span>}
+                {isMid && <span className="label-m">🔺M</span>}
+                {isRight && <span className="label-r">🔺R</span>}
+                {!isLeft && !isMid && !isRight && <span className="label-none">·</span>}
               </div>
             </div>
           );
@@ -77,11 +91,12 @@ export default function BinarySearchPage({ onBack }) {
       <div className="controls">
         <button onClick={reset} className="btn btn-reset">↺ Reset</button>
         <button onClick={goPrev} disabled={step === 0} className="btn btn-prev">← Previous</button>
-        <button onClick={goNext} disabled={step === STEPS.length - 1} className="btn btn-next">Next →</button>
+        <button onClick={goNext} disabled={step === steps.length - 1} className="btn btn-next">Next →</button>
+        <button onClick={handleRandom} className="btn btn-random">Random</button>
       </div>
 
       <div className="step-info">
-        <div className="step-count">Step {step + 1} of {STEPS.length}</div>
+        <div className="step-count">Step {step + 1} of {steps.length}</div>
       </div>
 
       {onBack && (

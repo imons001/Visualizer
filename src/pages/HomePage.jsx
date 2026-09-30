@@ -7,16 +7,13 @@ export default function HomePage({ onNavigate }) {
     <div className="home">
       <h1 className="home-title">Patternly<em></em><br />step by step</h1>
       <div className="card-grid">
-{lessons.map((lesson) => (
-  <LessonCard
-    key={lesson.id}
-    lesson={lesson}
-    onClick={
-      lesson.status === "ready" ? () => onNavigate(lesson.id) : undefined
-    }
-  />
-))}
- 
+        {lessons.map((lesson) => (
+          <LessonCard
+            key={lesson.id}
+            lesson={lesson}
+            onClick={() => onNavigate(lesson.id)}
+          />
+        ))}
       </div>
     </div>
   );

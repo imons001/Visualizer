@@ -3,9 +3,9 @@ export const lessons = [
     id: "two-pointer",
     name: "Two Pointer",
     desc: "Find pairs in a sorted array",
-    icon: "👈👉",
+    icon: "🔺🔺",
     iconStyle: "blue",
-    status: "ready",
+   
   },
   {
     id: "sliding-window",
@@ -13,7 +13,7 @@ export const lessons = [
     desc: "Track subarrays efficiently",
     icon: "🪟",
     iconStyle: "pink",
-    status: "ready",
+  
   },
   {
     id: "binary-search",
@@ -21,14 +21,37 @@ export const lessons = [
     desc: "Divide and conquer sorted arrays",
     icon: "🔍",
     iconStyle: "green",
-    status: "ready",
+   
   },
   {
     id: "linked-list",
-    name: "Linked List",
+    name: "Linked List Reversal",
     desc: "Master the dynamic data structure",
     icon: "🔗",
     iconStyle: "purple",
-    status: "ready",
+  
+  },
+  {
+    id: "fast-slow",
+    name: "Fast and Slow Pointers",
+    desc: "Detect cycles in linked lists",
+    icon: "🐢⚡",
+    iconStyle: "orange",
+    
+  },
+  {
+    id: "b-tree",
+    name: "B-Tree",
+    desc: "B Tree operations",
+    icon: "🌳",
+    iconStyle: "teal",
+  },
+
+  {
+    id: "dictionary",
+    name: "Dictionary",
+    desc: "Understand key-value storage",
+    icon: "🗝️",
+    iconStyle: "red",
   },
 ];

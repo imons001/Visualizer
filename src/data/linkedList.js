@@ -55,8 +55,8 @@ export const STEPS = (() => {
 })();
 
 export function getExplanation(action) {
-  if (action === "look")  return "Save your escape route — bookmark next = current.next before the link is broken.";
-  if (action === "point") return "Flip the pointer — current.next = prev. The forward connection is severed.";
-  if (action === "slide") return "Slide forward — prev = current, current = next. Repeat until done.";
+  if (action === "look")  return "Save your escape with next = current.next before the link is broken.";
+  if (action === "point") return "Flip the pointer current.next = prev. The forward connection is severed.";
+  if (action === "slide") return "Slide forward prev = current, current = next. Repeat until done.";
   return "";
 }
