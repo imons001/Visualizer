@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/linkedList.css";
-import { nodes, STEPS, getExplanation } from "../data/linkedList";
+import { nodes, STEPS, getExplanation } from "../data/linkedList.js";
 
 export default function LinkedListPage({ onBack }) {
   const [step, setStep] = useState(0);
