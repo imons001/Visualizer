@@ -1,0 +1,285 @@
+/* B-Tree Visualizer — dark neon module, scoped under .bt-page */
+/* Deliberately its own theme: deep indigo instead of pure black, */
+/* a pink signature accent that nods to Patternly's brand color, */
+/* indigo for structure, teal for data-at-rest, amber for splits. */
+
+.bt-page {
+  --bt-bg: #0b0e1c;
+  --bt-panel: rgba(19, 24, 46, 0.72);
+  --bt-panel-solid: #131a30;
+  --bt-border: rgba(124, 143, 255, 0.22);
+  --bt-border-soft: rgba(124, 143, 255, 0.12);
+  --bt-text: #e7e9f7;
+  --bt-text-dim: #8890b8;
+  --bt-pink: #ff6fae;
+  --bt-pink-soft: rgba(255, 111, 174, 0.16);
+  --bt-indigo: #7c8fff;
+  --bt-indigo-soft: rgba(124, 143, 255, 0.16);
+  --bt-teal: #43e6c9;
+  --bt-teal-soft: rgba(67, 230, 201, 0.14);
+  --bt-amber: #ffb84d;
+  --bt-amber-soft: rgba(255, 184, 77, 0.16);
+  --bt-coral: #ff5c7a;
+  --bt-coral-soft: rgba(255, 92, 122, 0.16);
+
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(124, 143, 255, 0.14), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255, 111, 174, 0.10), transparent 55%),
+    var(--bt-bg);
+  color: var(--bt-text);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 56px;
+}
+
+.bt-shell {
+  width: 100%;
+  max-width: 760px;
+}
+
+/* ── Header ── */
+.bt-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.bt-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin: 0 0 4px;
+  background: linear-gradient(90deg, var(--bt-pink), var(--bt-indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bt-subtitle {
+  color: var(--bt-text-dim);
+  font-size: 0.9rem;
+  margin: 0;
+}
+.bt-deco {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0 18px;
+}
+.bt-deco span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--bt-pink);
+  opacity: 0.35;
+}
+.bt-deco span:nth-child(2) { background: var(--bt-indigo); opacity: 0.6; }
+.bt-deco span:nth-child(3) { background: var(--bt-teal); opacity: 0.9; }
+
+/* ── Progress bar ── */
+.bt-progress-wrap {
+  background: rgba(124, 143, 255, 0.12);
+  border-radius: 99px;
+  height: 5px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.bt-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--bt-indigo), var(--bt-pink));
+  transition: width 0.4s ease;
+}
+
+/* ── Stats row ── */
+.bt-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.bt-stat {
+  background: var(--bt-panel);
+  border: 1px solid var(--bt-border-soft);
+  border-radius: 14px;
+  padding: 12px 10px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+.bt-stat-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--bt-text-dim);
+  margin: 0 0 4px;
+}
+.bt-stat-value {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+.bt-stat-ops .bt-stat-value { color: var(--bt-indigo); }
+.bt-stat-ins .bt-stat-value { color: var(--bt-teal); }
+.bt-stat-del .bt-stat-value { color: var(--bt-coral); }
+
+/* ── Tree panel ── */
+.bt-tree-panel {
+  background: var(--bt-panel);
+  border: 1px solid var(--bt-border);
+  border-radius: 20px;
+  padding: 20px 12px;
+  margin-bottom: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow-x: auto;
+}
+.bt-tree-svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* edges */
+.bt-edge {
+  fill: none;
+  stroke: var(--bt-border);
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+.bt-edge-active {
+  stroke: var(--bt-pink);
+  stroke-width: 2.2;
+  stroke-dasharray: 5 4;
+  animation: bt-flow 0.7s linear infinite;
+  filter: drop-shadow(0 0 4px var(--bt-pink));
+}
+@keyframes bt-flow {
+  to { stroke-dashoffset: -18; }
+}
+
+/* nodes */
+.bt-node-rect {
+  fill: var(--bt-panel-solid);
+  stroke: var(--bt-indigo);
+  stroke-width: 1.4;
+  transition: all 0.35s ease;
+}
+.bt-node-leaf .bt-node-rect { stroke: var(--bt-teal); }
+.bt-node-active .bt-node-rect {
+  stroke: var(--bt-pink);
+  filter: drop-shadow(0 0 8px var(--bt-pink));
+}
+.bt-node-split .bt-node-rect {
+  stroke: var(--bt-amber);
+  filter: drop-shadow(0 0 10px var(--bt-amber));
+}
+.bt-key-div {
+  stroke: var(--bt-border);
+  stroke-width: 1;
+}
+.bt-key-text {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+  fill: var(--bt-text);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.bt-node-active .bt-key-text.bt-key-current {
+  fill: var(--bt-pink);
+  font-weight: 700;
+}
+.bt-key-empty {
+  fill: var(--bt-text-dim);
+  font-size: 11px;
+}
+
+/* ── Explanation card ── */
+.bt-explain {
+  background: var(--bt-panel);
+  border: 1px solid var(--bt-border-soft);
+  border-left: 3px solid var(--bt-indigo);
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--bt-text);
+  margin-bottom: 20px;
+}
+.bt-explain-split { border-left-color: var(--bt-amber); }
+.bt-explain-delete { border-left-color: var(--bt-coral); }
+.bt-explain-done { border-left-color: var(--bt-teal); }
+
+/* ── Add/remove key panel ── */
+.bt-key-panel {
+  background: var(--bt-panel);
+  border: 1px solid var(--bt-border-soft);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.bt-key-panel-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--bt-text-dim);
+  margin: 0 0 10px;
+}
+.bt-key-row {
+  display: flex;
+  gap: 8px;
+}
+.bt-key-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--bt-border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--bt-text);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.9rem;
+  outline: none;
+}
+.bt-key-input:focus { border-color: var(--bt-pink); }
+.bt-key-input::placeholder { color: var(--bt-text-dim); }
+
+.bt-btn {
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+.bt-btn:disabled { opacity: 0.35; cursor: default; }
+.bt-btn-insert { background: var(--bt-teal); color: #06231d; }
+.bt-btn-insert:hover:not(:disabled) { filter: brightness(1.08); }
+.bt-btn-delete { background: var(--bt-coral); color: #2a0611; }
+.bt-btn-delete:hover:not(:disabled) { filter: brightness(1.08); }
+
+/* ── Controls ── */
+.bt-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.bt-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--bt-border);
+  color: var(--bt-text-dim);
+}
+.bt-btn-ghost:hover:not(:disabled) { color: var(--bt-text); border-color: var(--bt-indigo); }
+.bt-btn-primary { background: var(--bt-indigo); color: #0b0e1c; }
+.bt-btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
+.bt-btn-back { background: var(--bt-pink-soft); color: var(--bt-pink); }
+.bt-btn-back:hover { background: var(--bt-pink); color: #2a0611; }
+
+.bt-step-count {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--bt-text-dim);
+  font-family: 'DM Mono', ui-monospace, monospace;
+}

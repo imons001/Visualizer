@@ -1,0 +1,91 @@
+/* Sliding Window Visualizer */
+/* Shared styles live in main.css */
+
+.page-nav {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Cards */
+
+.fixed-card,
+.dynamic-card {
+  background: var(--pt-panel);
+  border: 1px solid var(--pt-border);
+  border-radius: 24px;
+  padding: 28px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Titles */
+
+.fixed-visualizer,
+.dynamic-visualizer {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+/* Arrays */
+
+.array-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cell-wrap {
+  display: flex;
+}
+
+/* in window, scanning */
+.cell-in-window {
+  background: var(--pt-pink-soft);
+  color: var(--pt-pink);
+  border: 2px solid var(--pt-pink);
+  box-shadow: 0 0 10px rgba(255, 111, 174, 0.45);
+}
+
+/* Target Found */
+
+.cell-found {
+  background: var(--pt-teal);
+  color: #06231d;
+  border: 2px solid var(--pt-teal);
+  box-shadow: 0 0 12px rgba(67, 230, 201, 0.5);
+}
+
+/* Explanation */
+
+.explanation-card,
+.dynamic-explanation-card {
+  background: var(--pt-panel);
+  color: var(--pt-text);
+  border: 1px solid var(--pt-border-soft);
+  border-left: 3px solid var(--pt-indigo);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+/* Switch */
+
+.btn-switch {
+  background: var(--pt-teal-soft);
+  color: var(--pt-teal);
+  border: none;
+}
+.btn-switch:hover { background: var(--pt-teal); color: #06231d; }

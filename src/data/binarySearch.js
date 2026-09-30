@@ -6,33 +6,45 @@ export const initialArray = [
 
 export const target = 29;
 
-export const STEPS = (() => {
+export function buildSteps(arr, tgt) {
     const steps = [];
     let left = 0;
-    let right = initialArray.length - 1;
+    let right = arr.length - 1;
 
     while (left <= right) {
         //math.floor handles odd lengths by rounding down apperently
         const mid = Math.floor((left + right) / 2);
-            //add to steps each iteration will start will padding prev left, right, and mid values
-            steps.push({ left, right, mid, 
-                action: initialArray[mid] === target 
+        steps.push({ left, right, mid,
+            action: arr[mid] === tgt 
                 ? "found" : 
-                initialArray[mid] < target ? 
+                arr[mid] < tgt ? 
                 "move_left" :
                 "move_right",
-            });
-        if (initialArray[mid] === target) {
-            // If we found the target at mid, we can stop
-            //move right mid
-            
-            break; 
-            //mid less than target, move left up to mid + 1
-        } else if (initialArray[mid] < target) {
+
+        });
+        if (arr[mid] === tgt) {
+            break;
+        } else if (arr[mid] < tgt) {
             left = mid + 1;
         } else {
             right = mid - 1;
         }
     }
     return steps;
-})();
+}
+
+//random with no duplicates 
+
+export function randomArray(size = 9, max = 99) {
+    const set = new Set();
+    while (set.size < size) {
+        set.add(Math.floor(Math.random() * max) + 1);
+    }
+    return Array.from(set).sort((a, b) => a - b);
+}
+
+export function randomTarget(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+export const STEPS = buildSteps(initialArray, target); 

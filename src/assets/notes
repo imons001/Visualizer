@@ -1,0 +1,37 @@
+1. Data file (algorithmSteps.js)
+
+Export initialArray and target
+Export STEPS — an IIFE that runs the algorithm and captures each state as { ...pointers/indices, sum, action }
+Export getExplanation(action) — returns a string for each action type
+
+2. Page component (AlgorithmPage.jsx)
+
+Import steps data
+State: step, any mode switchers
+Derive current = STEPS[step]
+Derive display values: explanation, statusMsg, progressPct
+Controls: reset, goNext, goPrev
+JSX structure:
+
+Header + progress bar
+Array wrap (map over array, classify each cell)
+Explanation card
+Status pill
+Controls (prev/next/reset)
+Step info footer
+
+
+
+3. CSS (algorithm.css)
+
+Cell states (default, active, found)
+Explanation card variants per action
+Status pill variants per action
+Progress bar
+Controls + buttons
+
+4.App.jsx  
+for routes 
+
+5. lessons.js 
+ready, steady, standby

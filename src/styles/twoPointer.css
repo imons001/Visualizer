@@ -1,228 +1,24 @@
-.app {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 40px 24px;
-  font-family: "Segoe UI", sans-serif;
-}
+/* Two Pointer — unique styles only */
+/* Shared styles live in main.css */
 
-.header {
+.twopointer-title {
+  font-size: 1.8rem;
   text-align: center;
-  margin-bottom: 24px;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #1a1a1a;
   margin: 0 0 8px;
 }
 
-.subtitle {
-  color: #777;
-  margin: 0;
-}
+/* Cell states */
+.cell-left  { background: var(--pt-pink-soft); color: var(--pt-pink); border-color: var(--pt-pink); box-shadow: 0 0 10px rgba(255, 111, 174, 0.45); }
+.cell-right { background: var(--pt-indigo-soft); color: var(--pt-indigo); border-color: var(--pt-indigo); box-shadow: 0 0 10px rgba(124, 143, 255, 0.45); }
+.cell-found { background: var(--pt-teal); color: #06231d; border-color: var(--pt-teal); box-shadow: 0 0 12px rgba(67, 230, 201, 0.5); }
 
-.deco {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin: 8px 0;
-}
+/* Pointer labels */
+.pointer-label { font-size: 0.65rem; font-weight: 700; color: var(--pt-pink); height: 14px; }
+.label-right { color: var(--pt-indigo); }
+.label-none { color: transparent; }
 
-.deco span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #b5547a;
-  opacity: 0.4;
-}
-
-.deco span:nth-child(2) {
-  opacity: 0.7;
-}
-
-.deco span:nth-child(3) {
-  opacity: 1;
-}
-
-.progress-bar-wrap {
-  background: #f2e0e7;
-  border-radius: 99px;
-  height: 6px;
-  margin-bottom: 32px;
-}
-
-.progress-bar-fill {
-  background: #b5547a;
-  height: 100%;
-  border-radius: 99px;
-  transition: width 0.4s ease;
-}
-
-.array-wrap {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
-.cell-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.cell {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.cell-default {
-  background: #f5f5f5;
-  color: #666;
-}
-
-.cell-left {
-  background: #f2e0e7;
-  color: #b5547a;
-  border: 2px solid #b5547a;
-}
-
-.cell-right {
-  background: #f2e0e7;
-  color: #b5547a;
-  border: 2px solid #b5547a;
-}
-
-.cell-found {
-  background: #b5547a;
-  color: white;
-  border: 2px solid #b5547a;
-}
-
-.pointer-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: #b5547a;
-  height: 14px;
-}
-
-.label-none {
-  color: transparent;
-}
-
-.explanation-card {
-  background: white;
-  border: 2px solid #f2e0e7;
-  border-radius: 16px;
-  padding: 16px 20px;
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
-.card-found {
-  border-color: #b5547a;
-  background: #faf0f4;
-}
-
-.status-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.status-pill {
-  padding: 8px 20px;
-  border-radius: 99px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.pill-move_left,
-.pill-move_right {
-  background: #f2e0e7;
-  color: #b5547a;
-}
-
-.pill-found {
-  background: #b5547a;
-  color: white;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btn {
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.btn-next {
-  background: #b5547a;
-  color: white;
-}
-
-.btn-next:hover:not(:disabled) {
-  background: #9c3d62;
-}
-
-.btn-prev {
-  background: #f2e0e7;
-  color: #b5547a;
-}
-
-.btn-reset {
-  background: #f5f5f5;
-  color: #666;
-}
-
-.step-info {
-  text-align: center;
-}
-
-.step-count {
-  font-size: 0.8rem;
-  color: #aaa;
-  margin-bottom: 6px;
-}
-
-.step-details {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.step-detail-item {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.dot-sep {
-  color: #ddd;
-}
+/* Status pill */
+.status-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
+.status-pill { padding: 8px 20px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; }
+.pill-move_left, .pill-move_right { background: var(--pt-pink-soft); color: var(--pt-pink); }
+.pill-found { background: var(--pt-teal); color: #06231d; }

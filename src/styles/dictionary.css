@@ -1,0 +1,154 @@
+/* Hash Map Visualizer — dark neon, scoped under .hm-page */
+/* Same palette and fonts as bTree.css: pink = active key, indigo = structure, */
+/* teal = stored data, amber = collisions. */
+
+.hm-page {
+  --hm-bg: #0b0e1c;
+  --hm-panel: rgba(19, 24, 46, 0.72);
+  --hm-panel-solid: #131a30;
+  --hm-border: rgba(124, 143, 255, 0.22);
+  --hm-border-soft: rgba(124, 143, 255, 0.12);
+  --hm-text: #e7e9f7;
+  --hm-text-dim: #8890b8;
+  --hm-pink: #ff6fae;
+  --hm-pink-soft: rgba(255, 111, 174, 0.16);
+  --hm-indigo: #7c8fff;
+  --hm-indigo-soft: rgba(124, 143, 255, 0.16);
+  --hm-teal: #43e6c9;
+  --hm-teal-soft: rgba(67, 230, 201, 0.14);
+  --hm-amber: #ffb84d;
+  --hm-amber-soft: rgba(255, 184, 77, 0.16);
+
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(124, 143, 255, 0.14), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255, 111, 174, 0.10), transparent 55%),
+    var(--hm-bg);
+  color: var(--hm-text);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+.hm-page .app { font-family: inherit; }
+
+/* ── Header ── */
+.hashmap-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin: 0 0 4px;
+  background: linear-gradient(90deg, var(--hm-pink), var(--hm-indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hm-page .subtitle { color: var(--hm-text-dim); font-size: 0.9rem; }
+.hm-page .deco span { width: 6px; height: 6px; background: var(--hm-pink); opacity: 0.35; }
+.hm-page .deco span:nth-child(2) { background: var(--hm-indigo); opacity: 0.6; }
+.hm-page .deco span:nth-child(3) { background: var(--hm-teal); opacity: 0.9; }
+
+/* ── Progress bar ── */
+.hm-page .progress-bar-wrap { background: var(--hm-indigo-soft); height: 5px; overflow: hidden; }
+.hm-page .progress-bar-fill { background: linear-gradient(90deg, var(--hm-indigo), var(--hm-pink)); }
+
+/* ── Top: current key → hash → mod ── */
+.hash-pipeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.hm-chip {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  background: var(--hm-indigo-soft);
+  color: var(--hm-indigo);
+  border: 1px solid var(--hm-border);
+}
+
+/* ── Buckets panel ── */
+.bucket-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--hm-panel);
+  border: 1px solid var(--hm-border);
+  border-radius: 20px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+.bucket-row, .chain-item { display: flex; align-items: center; gap: 6px; }
+
+.hm-page .cell {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-weight: 500;
+}
+.hm-page .cell-default {
+  background: var(--hm-panel-solid);
+  color: var(--hm-text-dim);
+  border: 1px solid var(--hm-indigo);
+}
+.hm-page .cell-bucket-active {
+  background: var(--hm-pink-soft);
+  color: var(--hm-pink);
+  border: 1px solid var(--hm-pink);
+  filter: drop-shadow(0 0 8px var(--hm-pink));
+}
+
+/* ── Arrows ── */
+.hm-arrow { color: var(--hm-border); font-size: 1.1rem; transition: color 0.3s ease; }
+.hm-arrow-active { color: var(--hm-pink); }
+
+/* ── Entries ── */
+.hm-entry {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  transition: all 0.35s ease;
+}
+.hm-entry-default   { background: var(--hm-panel-solid); color: var(--hm-text); border-color: var(--hm-teal); }
+.hm-entry-current   { background: var(--hm-pink-soft); color: var(--hm-pink); border-color: var(--hm-pink); filter: drop-shadow(0 0 8px var(--hm-pink)); }
+.hm-entry-placed    { background: transparent; color: var(--hm-text-dim); border: 1px dashed var(--hm-border); opacity: 0.6; }
+.hm-entry-insert    { background: var(--hm-teal-soft); color: var(--hm-teal); border-color: var(--hm-teal); filter: drop-shadow(0 0 8px var(--hm-teal)); }
+.hm-entry-collision { background: var(--hm-amber-soft); color: var(--hm-amber); border: 1px dashed var(--hm-amber); filter: drop-shadow(0 0 10px var(--hm-amber)); }
+
+/* ── Explanation ── */
+.hm-page .hm-explanation {
+  background: var(--hm-panel);
+  border: 1px solid var(--hm-border-soft);
+  border-left: 3px solid var(--hm-indigo);
+  border-radius: 14px;
+  color: var(--hm-text);
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+/* ── Controls ── */
+.hm-page .controls { flex-wrap: wrap; gap: 8px; }
+.hm-page .btn { font-family: inherit; font-weight: 700; font-size: 0.8rem; border-radius: 10px; padding: 9px 16px; }
+.hm-page .btn-back  { background: var(--hm-pink-soft); color: var(--hm-pink); }
+.hm-page .btn-back:hover { background: var(--hm-pink); color: #2a0611; }
+.hm-page .btn-reset,
+.hm-page .btn-prev  { background: transparent; border: 1px solid var(--hm-border); color: var(--hm-text-dim); }
+.hm-page .btn-reset:hover,
+.hm-page .btn-prev:hover:not(:disabled) { color: var(--hm-text); border-color: var(--hm-indigo); }
+.hm-page .btn-next  { background: var(--hm-indigo); color: #0b0e1c; }
+.hm-page .btn-next:hover:not(:disabled) { background: var(--hm-indigo); filter: brightness(1.1); }
+.hm-page .step-count { color: var(--hm-text-dim); font-family: 'DM Mono', ui-monospace, monospace; font-size: 0.75rem; }
+.hm-page .hm-explain-mod       { border-left-color: var(--hm-pink); }
+.hm-page .hm-explain-insert    { border-left-color: var(--hm-teal); }
+.hm-page .hm-explain-collision { border-left-color: var(--hm-amber); }

@@ -1,7 +1,6 @@
 body {
   margin: 0;
-  background: #fff0f5;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
 }
 
 .home {
@@ -13,14 +12,16 @@ body {
 .home-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #b5547a;
   line-height: 1.2;
   margin-bottom: 40px;
+  background: linear-gradient(90deg, var(--pt-pink), var(--pt-indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .home-title em {
   font-style: normal;
-  color: #b5547a;
 }
 
 .card-grid {
@@ -33,20 +34,28 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
-  border: 2px solid #f2e0e7;
+  background: var(--pt-panel);
+  border: 1px solid var(--pt-border-soft);
   border-radius: 16px;
   padding: 18px 20px;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
+  font-family: inherit;
+  text-align: left;
+  backdrop-filter: blur(6px);
 }
 
 .lesson-card:hover {
-  border-color: #b5547a;
+  border-color: var(--pt-pink);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(181, 84, 122, 0.12);
+  box-shadow: 0 8px 24px rgba(255, 111, 174, 0.12);
+}
+
+.lesson-card:focus-visible {
+  outline: 2px solid var(--pt-pink);
+  outline-offset: 2px;
 }
 
 .card-left {
@@ -57,7 +66,7 @@ body {
 
 .card-icon {
   font-size: 1.6rem;
-  background: #f2e0e7;
+  background: var(--pt-pink-soft);
   border-radius: 12px;
   padding: 10px;
   line-height: 1;
@@ -66,18 +75,18 @@ body {
 .card-name {
   font-size: 1rem;
   font-weight: 700;
-  color: #b5547a;
+  color: var(--pt-text);
 }
 
 .card-desc {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--pt-text-dim);
   margin-top: 2px;
 }
 
 .badge {
-  background: #f2e0e7;
-  color: #b5547a;
+  background: var(--pt-pink-soft);
+  color: var(--pt-pink);
   font-size: 0.7rem;
   font-weight: 700;
   padding: 4px 10px;
@@ -87,11 +96,11 @@ body {
 }
 
 .badge.soon {
-  background: #f5f5f5;
-  color: #aaa;
+  background: var(--pt-indigo-soft);
+  color: var(--pt-text-dim);
 }
 
 .card-arrow {
   font-size: 1.2rem;
-  color: #b5547a;
+  color: var(--pt-pink);
 }

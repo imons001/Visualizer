@@ -1,13 +1,8 @@
 export default function LessonCard({ lesson, onClick }) {
-  const { name, desc, icon, iconStyle, status } = lesson;
-  const isReady = status === "ready";
+  const { name, desc, icon, iconStyle } = lesson;
 
   return (
-    <button
-      className="lesson-card"
-      onClick={isReady ? onClick : undefined}
-      style={!isReady ? { opacity: 0.6, cursor: "default" } : {}}
-    >
+    <button className="lesson-card" onClick={onClick}>
       <div className="card-left">
         <div className={`card-icon ${iconStyle !== "pink" ? iconStyle : ""}`}>
           {icon}
@@ -17,16 +12,7 @@ export default function LessonCard({ lesson, onClick }) {
           <div className="card-desc">{desc}</div>
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        {isReady ? (
-          <>
-            <span className="badge">Ready</span>
-            <span className="card-arrow">→</span>
-          </>
-        ) : (
-          <span className="badge soon">Soon</span>
-        )}
-      </div>
+      <span className="card-arrow">→</span>
     </button>
   );
 }
