@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "../styles/bTree.css";
-import { BTree, layoutTree, buildInitialSteps } from "../data/bTree.js";
+import { BTree, layoutTree, buildInitialSteps } from "../data/Btree.js";
 
 function collectIds(node, out = []) {
   if (!node) return out;
