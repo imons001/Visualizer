@@ -25,8 +25,8 @@ export const lessons = [
   },
   {
     id: "linked-list",
-    name: "Linked List Reversal",
-    desc: "Master the dynamic data structure",
+    name: "Linked Lists",
+    desc: "single, double and reversal",
     icon: "🔗",
     iconStyle: "purple",
   
@@ -50,8 +50,15 @@ export const lessons = [
   {
     id: "dictionary",
     name: "Dictionary",
-    desc: "Understand key-value storage",
+    desc: "Understand key : value storage",
     icon: "🗝️",
     iconStyle: "red",
   },
+    {
+    id: "graph",
+    name: "Graph BFS",
+    desc: "Explore a graph level by level",
+    icon: "🐼",
+    iconStyle: "pink",
+  }
 ];

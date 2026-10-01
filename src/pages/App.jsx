@@ -8,6 +8,8 @@ import FastSlowPage from "./fastSlow.jsx";
 import "../styles/main.css";
 import BTreePage from "./Btree.jsx";
 import DictionaryPage from "./dictionary.jsx";
+import GraphPage from "./Graph.jsx";
+
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -19,6 +21,6 @@ export default function App() {
   if (page === "fast-slow") return <FastSlowPage onBack={() => setPage("home")} />;
   if (page === "b-tree") return <BTreePage onBack={() => setPage("home")} />;
   if (page === "dictionary") return <DictionaryPage onBack={() => setPage("home")} />;
-
+  if (page === "graph") return <GraphPage onBack={() => setPage("home")} />;
   return <HomePage onNavigate={(id) => setPage(id)} />;
 }

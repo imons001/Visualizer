@@ -1,8 +1,3 @@
-body {
-  margin: 0;
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
-}
-
 .home {
   max-width: 600px;
   margin: 0 auto;
@@ -10,97 +5,61 @@ body {
 }
 
 .home-title {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 40px;
-  background: linear-gradient(90deg, var(--pt-pink), var(--pt-indigo));
+  margin: 0 0 40px;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-indigo));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.home-title em {
-  font-style: normal;
-}
-
 .card-grid {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .lesson-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--pt-panel);
-  border: 1px solid var(--pt-border-soft);
+  background: var(--neon-panel);
+  border: 1px solid var(--neon-border-soft);
   border-radius: 16px;
-  padding: 18px 20px;
+  padding: 16px 20px;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
   font-family: inherit;
   text-align: left;
+  color: inherit;
   backdrop-filter: blur(6px);
 }
-
 .lesson-card:hover {
-  border-color: var(--pt-pink);
+  border-color: var(--neon-pink);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 111, 174, 0.12);
+  box-shadow: 0 0 18px rgba(255, 111, 174, 0.18);
 }
+.lesson-card:focus-visible { outline: 2px solid var(--neon-pink); outline-offset: 2px; }
 
-.lesson-card:focus-visible {
-  outline: 2px solid var(--pt-pink);
-  outline-offset: 2px;
-}
-
-.card-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+.card-left { display: flex; align-items: center; gap: 16px; }
 
 .card-icon {
-  font-size: 1.6rem;
-  background: var(--pt-pink-soft);
+  font-size: 1.5rem;
+  background: var(--neon-pink-soft);
   border-radius: 12px;
   padding: 10px;
   line-height: 1;
 }
+.card-icon.blue   { background: var(--neon-indigo-soft); }
+.card-icon.purple { background: var(--neon-indigo-soft); }
+.card-icon.green  { background: var(--neon-teal-soft); }
+.card-icon.teal   { background: var(--neon-teal-soft); }
+.card-icon.orange { background: var(--neon-amber-soft); }
 
-.card-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--pt-text);
-}
-
-.card-desc {
-  font-size: 0.8rem;
-  color: var(--pt-text-dim);
-  margin-top: 2px;
-}
-
-.badge {
-  background: var(--pt-pink-soft);
-  color: var(--pt-pink);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.badge.soon {
-  background: var(--pt-indigo-soft);
-  color: var(--pt-text-dim);
-}
-
-.card-arrow {
-  font-size: 1.2rem;
-  color: var(--pt-pink);
-}
+.card-name { font-size: 1rem; font-weight: 700; color: var(--neon-text); }
+.card-desc { font-size: 0.8rem; color: var(--neon-dim); margin-top: 2px; }
+.card-arrow { font-size: 1.2rem; color: var(--neon-pink); }

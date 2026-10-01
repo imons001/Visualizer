@@ -41,7 +41,7 @@ export default function TwoPointerPage({ onBack }) {
             <div className="cell-wrap" key={i}>
               <div className={cellClass}>{val}</div>
               <div className={`pointer-label ${isLeft ? "label-left" : isRight ? "label-right" : "label-none"}`}>
-                {isLeft ? "🔺 L" : isRight ? "R 🔺" : "·"}
+                {isLeft ? "🔺 L" : isRight ? "R 🔻" : "·"}
               </div>
             </div>
           );
