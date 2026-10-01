@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import "../styles/bTree.css";
+import "../styles/Btree.css";
 import { BTree, layoutTree, buildInitialSteps } from "../data/Btree.js";
 
 function collectIds(node, out = []) {
