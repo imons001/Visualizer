@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/graph.css";
+import "../styles/Graph.css";
 import { nodes, edges, pythonCode, STEPS, getExplanation } from "../data/Graph.js";
 
 const R = 22; // node radius
