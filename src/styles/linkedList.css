@@ -11,16 +11,19 @@
 }
 
 .reversal-card {
-  background: var(--pt-panel);
-  border: 1px solid var(--pt-border);
+  background: var(--neon-panel);
   border-radius: 24px;
   padding: 26px 30px 28px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 .visualizer {
   font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-align: center;
   margin: 0 0 4px;
 }
@@ -41,37 +44,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--pt-mono);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.95rem;
   transition: all 0.3s ease;
   border: 2px solid transparent;
 }
 
 .node-default {
-  background: var(--pt-panel-solid);
-  color: var(--pt-text);
-  border-color: var(--pt-border-soft);
+  background: var(--neon-panel-solid);
+  color: var(--neon-dim);
+  border-color: var(--neon-border);
 }
 
 .node-current {
-  background: var(--pt-panel-solid);
-  color: var(--pt-pink);
-  border: 2px solid var(--pt-pink);
+  background: var(--neon-panel-solid);
+  color: var(--neon-pink);
+  border: 2px solid var(--neon-pink);
   box-shadow: 0 0 12px rgba(255, 111, 174, 0.45);
 }
 
 .node-prev,
 .node-reversed {
-  background: var(--pt-indigo-soft);
-  color: var(--pt-indigo);
-  border: 2px solid var(--pt-indigo);
+  background: var(--neon-indigo-soft);
+  color: var(--neon-indigo);
+  border: 2px solid var(--neon-indigo);
 }
 
 .node-next {
-  background: var(--pt-panel-solid);
-  color: var(--pt-teal);
-  border: 2px solid var(--pt-teal);
+  background: var(--neon-panel-solid);
+  color: var(--neon-teal);
+  border: 2px solid var(--neon-teal);
   box-shadow: 0 0 12px rgba(67, 230, 201, 0.35);
 }
 
@@ -93,18 +95,15 @@
 .node-label {
   height: 14px;
   font-size: 0.62rem;
-  font-weight: 600;
-  color: var(--pt-text-dim);
+  font-weight: 500;
+  color: var(--neon-dim);
 }
 
 .node-label-null {
-  font-family: var(--pt-mono);
   font-size: 0.95rem;
-  color: var(--pt-text-dim);
+  font-weight: 400;
+  color: var(--neon-dim);
 }
-
-.pointer-tag { font-size: 0.62rem; font-weight: 600; color: var(--pt-indigo); }
-.pointer-down-arrow { color: var(--pt-indigo); }
 
 .arrow {
   height: 50px;
@@ -116,24 +115,24 @@
 }
 
 .arrow-right-default {
-  color: var(--pt-border);
+  color: rgba(136, 144, 184, 0.45);
 }
 
 .arrow-right {
-  color: var(--pt-pink);
+  color: var(--neon-pink);
 }
 
 .arrow-left {
-  color: var(--pt-indigo);
+  color: var(--neon-indigo);
 }
 
 .arrow-highlight {
-  color: var(--pt-pink);
+  color: var(--neon-pink);
   font-size: 1.2rem;
 }
 
 .arrow-severed {
-  color: var(--pt-coral);
+  color: var(--neon-coral);
   font-size: 1rem;
   font-weight: 900;
   padding: 0 4px;
@@ -141,7 +140,7 @@
 
 .explanation-card {
   background: transparent;
-  color: var(--pt-text-dim);
+  color: var(--neon-text);
   border-radius: 0;
   padding: 0;
   margin: 8px 0 16px;
@@ -152,8 +151,8 @@
 }
 
 .output-wrap {
-  background: var(--pt-panel-solid);
-  border: 1px solid var(--pt-border);
+  background: var(--neon-panel-solid);
+  border: 2px solid var(--neon-border);
   border-radius: 16px;
   padding: 18px 20px;
   margin-top: 6px;
@@ -164,7 +163,7 @@
 .output-label {
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--pt-text-dim);
+  color: var(--neon-dim);
   letter-spacing: 1px;
   margin: 0 0 12px;
   text-align: center;
@@ -180,14 +179,14 @@
 }
 
 .node-output {
-  background: var(--pt-teal-soft);
-  color: var(--pt-teal);
-  border: 2px solid var(--pt-teal);
-  box-shadow: 0 0 10px rgba(67, 230, 201, 0.3);
+  background: var(--neon-indigo-soft);
+  color: var(--neon-indigo);
+  border: 2px solid var(--neon-indigo);
+  box-shadow: 0 4px 12px rgba(124, 143, 255, 0.35);
 }
 
 .arrow-output {
-  color: var(--pt-teal);
+  color: var(--neon-indigo);
   font-size: 1.1rem;
   display: flex;
   align-items: center;

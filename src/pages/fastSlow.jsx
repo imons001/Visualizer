@@ -23,20 +23,14 @@ export default function FastSlowPage({ onBack }) {
 const renderNode = ({ val, cx, cy }) => {
   const isSlow = val === current.slow;
   const isFast = val === current.fast;
-  const fill        = isSlow ? "#f0eef8" : isFast ? "#fdf5f8" : "#f5f3f7";
-  const stroke      = isSlow ? "#9fa4cf" : isFast ? "#b5547a" : "#d8d4de";
-  const strokeWidth = (isSlow || isFast) ? 2 : 1.5;
-  const labelColor  = isSlow ? "#9fa4cf" : "#b5547a";
-  const labelText   = isSlow ? "slow" : isFast ? "fast" : null;
-  const filter      = isSlow ? "drop-shadow(0 0 6px #9fa4cf)" : isFast ? "drop-shadow(0 0 6px #b5547a)" : "none";
+  const state = isSlow && isFast ? "meet" : isSlow ? "slow" : isFast ? "fast" : "default";
+  const labelText = state === "meet" ? "slow = fast" : isSlow ? "slow" : isFast ? "fast" : null;
 
   return (
-    <g key={val} filter={filter}>
-      <circle cx={cx} cy={cy} r={22} fill={fill} stroke={stroke} strokeWidth={strokeWidth} />
-      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central" fill="#999" fontSize="14" fontWeight="600">{val}</text>
-      {labelText && (
-        <text x={cx} y={cy + 34} textAnchor="middle" fill={labelColor} fontSize="11" fontWeight="600">{labelText}</text>
-      )}
+    <g key={val} className={`fs-node fs-node-${state}`}>
+      <circle cx={cx} cy={cy} r={22} />
+      <text className="fs-node-text" x={cx} y={cy}>{val}</text>
+      {labelText && <text className="fs-node-label" x={cx} y={cy + 34}>{labelText}</text>}
     </g>
   );
 };
@@ -60,14 +54,14 @@ const renderNode = ({ val, cx, cy }) => {
               </defs>
 
               {/* Tail */}
-              <line x1="102" y1="190" x2="178" y2="190" stroke="#c9c6d0" strokeWidth="1.5" markerEnd="url(#arrow)"/>
-              <line x1="222" y1="190" x2="298" y2="190" stroke="#c9c6d0" strokeWidth="1.5" markerEnd="url(#arrow)"/>
+              <line x1="102" y1="190" x2="178" y2="190" className="fs-edge" markerEnd="url(#arrow)"/>
+              <line x1="222" y1="190" x2="298" y2="190" className="fs-edge" markerEnd="url(#arrow)"/>
 
               {/* Cycle */}
-              <path d="M 332 174 Q 358 95 407 77" fill="none" stroke="#c9c6d0" strokeWidth="1.5" markerEnd="url(#arrow)"/>
-              <path d="M 433 77 Q 482 95 510 174" fill="none" stroke="#c9c6d0" strokeWidth="1.5" markerEnd="url(#arrow)"/>
-              <path d="M 510 206 Q 482 285 433 303" fill="none" stroke="#c9c6d0" strokeWidth="1.5" markerEnd="url(#arrow)"/>
-              <path d="M 407 303 Q 358 285 330 206" fill="none" stroke="#c9c6d0" strokeWidth="1.5" markerEnd="url(#arrow)"/>
+              <path d="M 332 174 Q 358 95 407 77" className="fs-edge" markerEnd="url(#arrow)"/>
+              <path d="M 433 77 Q 482 95 510 174" className="fs-edge" markerEnd="url(#arrow)"/>
+              <path d="M 510 206 Q 482 285 433 303" className="fs-edge" markerEnd="url(#arrow)"/>
+              <path d="M 407 303 Q 358 285 330 206" className="fs-edge" markerEnd="url(#arrow)"/>
 
               {NODES.map(renderNode)}
             </svg>

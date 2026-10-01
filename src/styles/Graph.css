@@ -1,0 +1,185 @@
+/* Graph (BFS) — neon style matching the linked list page.
+   Self-contained on purpose: this file loads after main.css,
+   so it sets its own title/panel colors instead of relying on order.
+   current = pink, neighbor = teal, queued/visited = indigo */
+
+.gr-page-nav {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 18px 0;
+}
+.gr-card { width: 100%; max-width: 730px; }
+
+/* ── Glass panel (same as .reversal-card) ── */
+.graph-card {
+  background: var(--neon-panel);
+  border: 1px solid var(--neon-border);
+  border-radius: 24px;
+  padding: 26px 30px 28px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.gr-visualizer {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin: 0 0 4px;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Graph SVG ── */
+.gr-graph-wrap { display: flex; justify-content: center; margin-bottom: 8px; }
+
+.gr-edge {
+  stroke: rgba(136, 144, 184, 0.35);
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
+.gr-edge-tree    { stroke: var(--neon-indigo); stroke-width: 2; }
+.gr-edge-checked { stroke: var(--neon-dim); stroke-width: 1.8; stroke-dasharray: 5 4; }
+.gr-edge-active  {
+  stroke: var(--neon-pink);
+  stroke-width: 2.2;
+  stroke-dasharray: 5 4;
+  animation: gr-flow 0.7s linear infinite;
+  filter: drop-shadow(0 0 4px var(--neon-pink));
+}
+@keyframes gr-flow { to { stroke-dashoffset: -18; } }
+@media (prefers-reduced-motion: reduce) { .gr-edge-active { animation: none; } }
+
+/* nodes — same look as the linked list boxes */
+.gr-node circle {
+  fill: var(--neon-panel-solid);
+  stroke: var(--neon-border);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+.gr-node-queued circle   { stroke: var(--neon-indigo); }
+.gr-node-done circle     { fill: var(--neon-indigo-soft); stroke: var(--neon-indigo); }
+.gr-node-current circle  { stroke: var(--neon-pink); filter: drop-shadow(0 0 6px rgba(255, 111, 174, 0.6)); }
+.gr-node-neighbor circle { stroke: var(--neon-teal); filter: drop-shadow(0 0 6px rgba(67, 230, 201, 0.5)); }
+
+.gr-node-text {
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--neon-dim);
+}
+.gr-node-queued .gr-node-text,
+.gr-node-done .gr-node-text     { fill: var(--neon-indigo); }
+.gr-node-current .gr-node-text  { fill: var(--neon-pink); }
+.gr-node-neighbor .gr-node-text { fill: var(--neon-teal); }
+
+.gr-node-label { text-anchor: middle; font-size: 10px; font-weight: 500; fill: var(--neon-dim); }
+
+/* ── Explanation (same as the linked list card) ── */
+.gr-explain {
+  background: var(--neon-panel);
+  border: 1px solid var(--neon-border-soft);
+  border-left: 3px solid var(--neon-indigo);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin: 0 0 18px;
+  color: var(--neon-text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-align: center;
+}
+.gr-explain-dequeue { border-left-color: var(--neon-pink); }
+.gr-explain-enqueue { border-left-color: var(--neon-teal); }
+.gr-explain-done    { border-left-color: var(--neon-teal); }
+
+/* ── Queue / visit order ── */
+.gr-state {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.gr-state-box {
+  background: var(--neon-panel-solid);
+  border: 1px solid var(--neon-border-soft);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.gr-state-label { font-size: 0.75rem; font-weight: 700; color: var(--neon-dim); margin: 0 0 10px; }
+.gr-state-label span { font-weight: 400; opacity: 0.6; margin-left: 4px; }
+.gr-state-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 32px;
+}
+.gr-chip-wrap { display: flex; align-items: center; gap: 6px; }
+.gr-chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.gr-chip-queue { background: var(--neon-panel-solid); color: var(--neon-indigo); border: 2px solid var(--neon-indigo); }
+.gr-chip-order { background: var(--neon-indigo-soft); color: var(--neon-indigo); border: 2px solid var(--neon-indigo); }
+.gr-chip-arrow { color: var(--neon-indigo); font-size: 0.9rem; }
+.gr-empty { font-size: 0.8rem; color: var(--neon-dim); opacity: 0.6; }
+
+/* ── Python code panel ── */
+.gr-code {
+  border: 1px solid var(--neon-border-soft);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.gr-code-head {
+  background: var(--neon-panel-solid);
+  color: var(--neon-dim);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--neon-border-soft);
+}
+.gr-code-body {
+  margin: 0;
+  padding: 10px 0;
+  background: rgba(11, 14, 28, 0.6);
+  font-family: 'DM Mono', ui-monospace, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+.gr-code-line {
+  display: flex;
+  border-left: 3px solid transparent;
+  transition: background 0.25s ease;
+}
+.gr-code-line-active { background: var(--neon-pink-soft); border-left-color: var(--neon-pink); }
+.gr-line-no {
+  width: 36px;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 14px;
+  color: rgba(136, 144, 184, 0.4);
+  user-select: none;
+}
+.gr-line-text { color: var(--neon-dim); white-space: pre; }
+.gr-code-line-active .gr-line-text { color: var(--neon-text); }
+.gr-code-line-active .gr-line-no   { color: var(--neon-pink); }
+.gr-kw { color: var(--neon-indigo); }
+
+.gr-step-count {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--neon-dim);
+  margin: 0;
+}

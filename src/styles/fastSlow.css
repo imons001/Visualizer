@@ -1,22 +1,16 @@
+/* Fast & Slow Pointers — unique styles (title/panel colors live in main.css) */
+
 .fs-page-nav {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   padding: 18px 0;
 }
-
-.fs-card {
-  width: 100%;
-  max-width: 730px;
-}
+.fs-card { width: 100%; max-width: 730px; }
 
 .fast-slow-card {
-  background: var(--pt-panel);
-  border: 1px solid var(--pt-border);
   border-radius: 24px;
   padding: 26px 30px 28px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 .fs-visualizer {
@@ -25,31 +19,40 @@
   margin: 0 0 4px;
 }
 
-.fs-cycle-wrap {
-  width: 620px;
-  height: 380px;
+.fs-cycle-wrap { width: 620px; height: 380px; }
+
+/* edges */
+.fs-edge {
+  fill: none;
+  stroke: rgba(124, 143, 255, 0.35);
+  stroke-width: 1.5;
 }
 
-/* SVG node/edge colors (previously inline in fastSlow.jsx) */
-.fs-edge { fill: none; stroke: var(--pt-border); stroke-width: 1.5; }
+/* nodes — slow = indigo, fast = pink, meeting point = teal */
 .fs-node circle {
-  fill: var(--pt-panel-solid);
-  stroke: var(--pt-border);
+  fill: var(--neon-panel-solid);
+  stroke: rgba(124, 143, 255, 0.3);
   stroke-width: 1.5;
   transition: all 0.3s ease;
 }
-.fs-node-slow circle { fill: var(--pt-indigo-soft); stroke: var(--pt-indigo); stroke-width: 2; }
-.fs-node-fast circle { fill: var(--pt-pink-soft);   stroke: var(--pt-pink);   stroke-width: 2; }
-.fs-node-slow { filter: drop-shadow(0 0 6px var(--pt-indigo)); }
-.fs-node-fast { filter: drop-shadow(0 0 6px var(--pt-pink)); }
-.fs-node-val {
-  font-family: var(--pt-mono);
-  font-size: 14px;
-  font-weight: 500;
-  fill: var(--pt-text);
+.fs-node-slow circle { fill: var(--neon-indigo-soft); stroke: var(--neon-indigo); stroke-width: 2; filter: drop-shadow(0 0 6px var(--neon-indigo)); }
+.fs-node-fast circle { fill: var(--neon-pink-soft);   stroke: var(--neon-pink);   stroke-width: 2; filter: drop-shadow(0 0 6px var(--neon-pink)); }
+.fs-node-meet circle { fill: var(--neon-teal-soft);   stroke: var(--neon-teal);   stroke-width: 2; filter: drop-shadow(0 0 8px var(--neon-teal)); }
+
+.fs-node-text {
   text-anchor: middle;
   dominant-baseline: central;
+  font-family: var(--neon-mono);
+  font-size: 14px;
+  fill: var(--neon-dim);
 }
-.fs-node-tag { font-size: 11px; font-weight: 700; text-anchor: middle; }
-.fs-node-slow .fs-node-tag { fill: var(--pt-indigo); }
-.fs-node-fast .fs-node-tag { fill: var(--pt-pink); }
+.fs-node-slow .fs-node-text { fill: var(--neon-indigo); }
+.fs-node-fast .fs-node-text { fill: var(--neon-pink); }
+.fs-node-meet .fs-node-text { fill: var(--neon-teal); }
+
+.fs-node-label { text-anchor: middle; font-size: 11px; font-weight: 700; }
+.fs-node-slow .fs-node-label { fill: var(--neon-indigo); }
+.fs-node-fast .fs-node-label { fill: var(--neon-pink); }
+.fs-node-meet .fs-node-label { fill: var(--neon-teal); }
+
+.fast-slow-card .explanation { margin: 0; }
