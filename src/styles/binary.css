@@ -2,9 +2,8 @@
 /* Shared styles live in main.css */
 
 .binary-title {
-  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-size: 1.8rem;
   line-height: 1.15;
-  padding-bottom: 4px;
   text-align: center;
   margin: 0 0 8px;
 }
