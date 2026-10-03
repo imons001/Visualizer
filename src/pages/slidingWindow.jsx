@@ -1,7 +1,37 @@
 import { useState } from "react";
 import "../styles/slidingWindow.css";
-import { initialArray, STEPS, getExplanation } from "../data/slidingWindow";
-import { dynamicArray, DYNAMIC_STEPS } from "../data/slidingWindow";
+import {
+  initialArray, STEPS, FIXED_CODE,
+  dynamicArray, DYNAMIC_STEPS, DYNAMIC_CODE,
+  getExplanation,
+} from "../data/slidingWindow";
+
+const KEYWORDS = /\b(def|for|in|range|len|if|while|return|None)\b/;
+
+// light syntax coloring: split on keywords, wrap them in a span
+const highlight = (line) =>
+  line.split(KEYWORDS).map((part, i) =>
+    i % 2 ? <span key={i} className="sw-kw">{part}</span> : part
+  );
+
+function CodePanel({ file, code, lines }) {
+  return (
+    <div className="sw-code">
+      <div className="sw-code-head">{file}</div>
+      <pre className="sw-code-body">
+        {code.map((line, i) => (
+          <div
+            key={i}
+            className={`sw-code-line ${lines.includes(i + 1) ? "sw-code-line-active" : ""}`}
+          >
+            <span className="sw-line-no">{i + 1}</span>
+            <span className="sw-line-text">{highlight(line)}</span>
+          </div>
+        ))}
+      </pre>
+    </div>
+  );
+}
 
 export default function SlidingWindowPage({ onBack }) {
   const [mode, setMode] = useState("fixed");
@@ -17,14 +47,25 @@ export default function SlidingWindowPage({ onBack }) {
 
   const progressPct = ((step + 1) / activeSteps.length) * 100;
 
-  const getCellClass = (i) => {
-    const inWindow = i >= current.left && i <= current.right;
+  const renderArray = () => (
+    <div className="array-wrap">
+      {activeArray.map((val, i) => {
+        const inWindow = i >= current.left && i <= current.right;
+        const cellClass =
+          current.action === "found" && inWindow
+            ? "cell cell-found"
+            : inWindow
+            ? "cell cell-in-window"
+            : "cell cell-default";
 
-    if (inWindow && current.action === "found") return "cell cell-found";
-    if (inWindow) return "cell cell-in-window";
-
-    return "cell cell-default";
-  };
+        return (
+          <div className="cell-wrap" key={i}>
+            <div className={cellClass}>{val}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div className="page-nav">
@@ -46,28 +87,13 @@ export default function SlidingWindowPage({ onBack }) {
               />
             </div>
 
-<div className="array-wrap">
-  {activeArray.map((val, i) => {
-    const inWindow = i >= current.left && i <= current.right;
-
-    const cellClass =
-      current.action === "found" && inWindow
-        ? "cell cell-found"
-        : inWindow
-        ? "cell cell-in-window"
-        : "cell cell-default";
-
-    return (
-      <div className="cell-wrap" key={i}>
-        <div className={cellClass}>{val}</div>
-      </div>
-    );
-  })}
-</div>
+            {renderArray()}
 
             <div className="explanation-card">
-              {getExplanation(current.action)}
+              {getExplanation(current)}
             </div>
+
+            <CodePanel file="fixed window python" code={FIXED_CODE} lines={current.lines} />
 
             <div className="controls">
               <button onClick={onBack} className="btn btn-back">
@@ -97,9 +123,11 @@ export default function SlidingWindowPage({ onBack }) {
                 }}
                 className="btn btn-switch"
               >
-                Switch to Dynamic →
+                Switch to Dynamic
               </button>
             </div>
+
+            <p className="sw-step-count">Step {step + 1} of {activeSteps.length}</p>
           </div>
         )}
 
@@ -120,28 +148,13 @@ export default function SlidingWindowPage({ onBack }) {
               />
             </div>
 
-<div className="array-wrap">
-  {activeArray.map((val, i) => {
-    const inWindow = i >= current.left && i <= current.right;
-
-    const cellClass =
-      current.action === "found" && inWindow
-        ? "cell cell-found"
-        : inWindow
-        ? "cell cell-in-window"
-        : "cell cell-default";
-
-    return (
-      <div className="cell-wrap" key={i}>
-        <div className={cellClass}>{val}</div>
-      </div>
-    );
-  })}
-</div>
+            {renderArray()}
 
             <div className="dynamic-explanation-card">
-              {getExplanation(current.action)}
+              {getExplanation(current)}
             </div>
+
+            <CodePanel file="dynamic window python" code={DYNAMIC_CODE} lines={current.lines} />
 
             <div className="controls">
               <button onClick={onBack} className="btn btn-back">
@@ -155,7 +168,7 @@ export default function SlidingWindowPage({ onBack }) {
                 disabled={step === 0}
                 className="btn btn-prev"
               >
-                ← Previous Step
+                Previous Step
               </button>
               <button
                 onClick={goNext}
@@ -171,9 +184,11 @@ export default function SlidingWindowPage({ onBack }) {
                 }}
                 className="btn btn-switch"
               >
-                ← Switch to Fixed
+                Switch to Fixed
               </button>
             </div>
+
+            <p className="sw-step-count">Step {step + 1} of {activeSteps.length}</p>
           </div>
         )}
       </div>

@@ -21,8 +21,8 @@ export const STEPS = (() => {
 
 export function getExplanation(action) {
   if (action === "found")    return "When both pointers point to numbers that sum to the target, we've found our answer and can stop searching.";
-  if (action === "move_left") return "The sum is less than the target — moving the left pointer right increases the sum.";
-  if (action === "move_left") return "The sum is less than the target — moving the left pointer right increases the sum.";
-  return "The sum is greater than the target — moving the right pointer left decreases the sum.";
+  if (action === "move_left") return "The sum is less than the target —> moving the left pointer right increases the sum.";
+  if (action === "move_right") return "The sum is greater than the target —> moving the right pointer left decreases the sum.";
+  return "The sum is greater than the target —> moving the right pointer left decreases the sum.";
 }
 

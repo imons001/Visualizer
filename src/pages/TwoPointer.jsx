@@ -71,7 +71,7 @@ export default function TwoPointerPage({ onBack }) {
 
       {onBack && (
         <div className="btn-back-wrap">
-          <button onClick={onBack} className="btn btn-back">← Back</button>
+          <button onClick={onBack} className="btn btn-back">Back</button>
         </div>
       )}
     </div>
