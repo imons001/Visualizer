@@ -46,9 +46,14 @@ body {
 .fs-visualizer,
 .gr-visualizer,
 .fixed-visualizer,
-.dynamic-visualizer {
+.dynamic-visualizer,
+.bt-title {
+  font-family: var(--neon-font);
+  font-size: 1.45rem;
   font-weight: 800;
+  line-height: 1.15;
   letter-spacing: 0.3px;
+  text-align: center;
   background: linear-gradient(90deg, var(--neon-pink), var(--neon-indigo));
   -webkit-background-clip: text;
   background-clip: text;
