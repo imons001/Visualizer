@@ -1,14 +1,25 @@
-/* Two Pointer — unique styles only (shared styles + title colors live in main.css) */
+/* Binary Search — unique styles only */
+/* Shared styles live in main.css */
 
-.twopointer-title { font-size: 1.8rem; text-align: center; margin: 0 0 8px; }
+.binary-title {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  padding-bottom: 4px;
+  text-align: center;
+  margin: 0 0 8px;
+}
 
-/* Cell states — left = pink, right = indigo, found = teal */
-.app .cell-left  { background: var(--neon-pink-soft);   color: var(--neon-pink);   border-color: var(--neon-pink);   box-shadow: 0 0 12px rgba(255, 111, 174, 0.45); }
-.app .cell-right { background: var(--neon-indigo-soft); color: var(--neon-indigo); border-color: var(--neon-indigo); box-shadow: 0 0 12px rgba(124, 143, 255, 0.45); }
-.app .cell-found { background: var(--neon-teal);        color: #06231d;            border-color: var(--neon-teal);   box-shadow: 0 0 14px rgba(67, 230, 201, 0.5); }
+/* Cell states */
+.cell-left  { background: var(--neon-pink-soft); color: var(--neon-pink); border-color: var(--neon-pink); box-shadow: 0 0 10px rgba(255, 111, 174, 0.4); }
+.cell-right { background: var(--neon-indigo-soft); color: var(--neon-indigo); border-color: var(--neon-indigo); }
+.cell-found { background: var(--neon-teal); color: #06231d; border-color: var(--neon-teal); box-shadow: 0 0 12px rgba(67, 230, 201, 0.5); }
+.cell-out   { background: transparent; color: rgba(136, 144, 184, 0.35); border-color: var(--neon-border-soft); }
 
 /* Pointer labels */
-.pointer-label { font-size: 0.65rem; font-weight: 700; height: 14px; }
-.label-left  { color: var(--neon-pink); }
-.label-right { color: var(--neon-indigo); }
-.label-none  { color: transparent; }
+.pointer-label { height: 14px; }
+.label-l { font-size: 0.65rem; font-weight: 700; color: #9fa4cf; }
+.label-m { font-size: 0.65rem; font-weight: 700; color: var(--neon-pink); }
+.label-r { font-size: 0.65rem; font-weight: 700; color: var(--neon-indigo); }
+
+/* Back button */
+.btn-back-wrap { display: flex; justify-content: center; margin-top: 20px; }
